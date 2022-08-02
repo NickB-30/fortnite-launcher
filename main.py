@@ -6,6 +6,7 @@ if launch == "2":
     sys.exit
 else:
     print("Opening LawinServer")
+    os.chdir(r'C:\Users\nicol\Desktop\normal-lawin\LawinServer-main')
     p = subprocess.Popen(r'C:\Users\nicol\Desktop\normal-lawin\LawinServer-main\start.bat')
     print("Opening Fiddler")
     p = subprocess.Popen(r'C:\Users\nicol\AppData\Local\Programs\Fiddler\Fiddler.exe')
