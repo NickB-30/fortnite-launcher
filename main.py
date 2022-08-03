@@ -6,11 +6,15 @@ import psutil
 import time
 
 def start():
-    launch = input("[1] - launch\n[2] - add directory\n[3] - remove directory\n[4] - quit\n")
+    launch = input("[1] - launch\n[2] - add fortnite build\n[3] - remove fortnite build\n[4] - set console dll path\n[5] - set fiddler path\n[6] - quit\n")
+    # add builds
     if launch == "2":
         txt = open("location.txt", "a")
         loc = input("Game Location: ")
         txt.write(f"\n{loc}")
+        print("Added Directory")
+        start()
+    # launch game
     elif launch == "1":
         with open('location.txt') as txt:
             locations = []
@@ -43,6 +47,32 @@ def start():
                 inject(pid, r'C:\Users\nicol\Desktop\UniversalFNConsole.dll')
                 injected = True
                 print("Injected Console DLL")
+    # remove builds
+    elif launch == "3":
+        with open("location.txt", "r") as txt:
+            i = 1
+            for line in txt:
+                print(f"{i}: {line}")
+                i+=1 
+            number = int(input("Remove: "))
+        with open("location.txt", "r") as file:
+            lines = file.readlines()
+            x=1
+            with open('location.txt', 'w') as remove:
+                for line in lines:
+                    if x != number:
+                        remove.write(line)
+                    x+=1
+        start()
+    # set console dll path
+    elif launch == "4":
+        start()
+    # set fiddler.exe path
+    elif launch == "5":
+        start()
+    # quit
+    elif launch == "6":
+        sys.exit
     else:
         print("Invalid Choice")
         start()        
