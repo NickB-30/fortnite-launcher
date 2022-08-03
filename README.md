@@ -2,8 +2,5 @@
 - Opens LawinServer and Fiddler
 - Auto injects console dll
 # Patch Notes
-- Add Fortnite Directories
-- Remove Fortnite Directories
-- Supports Versions 3.5-10.40
-# To-Do
-- Set Fiddler and Console DLL Directories
+- Set Fortnite, Console DLL, LawinServer, and Fiddler Directories
+- Supports Versions 2.5 - 15.50
