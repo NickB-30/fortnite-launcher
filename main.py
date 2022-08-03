@@ -6,7 +6,7 @@ import psutil
 import time
 
 def start():
-    launch = input("[1] - launch\n[2] - add fortnite build\n[3] - remove fortnite build\n[4] - set console dll path\n[5] - set fiddler path\n[6] - quit\n")
+    launch = input("[1] - launch\n[2] - add fortnite build\n[3] - remove fortnite build\n[4] - set console dll path\n[5] - set fiddler path\n[6] - set lawin path\n[7] - quit\n")
     # add builds
     if launch == "2":
         txt = open("location.txt", "a")
@@ -28,23 +28,40 @@ def start():
         location = build+"\Launcher.bat"
         print(locations[number-1])
         print("Opening LawinServer")
-        os.chdir(r'C:\Users\nicol\Desktop\normal-lawin\LawinServer-main')
-        p = subprocess.Popen(r'C:\Users\nicol\Desktop\normal-lawin\LawinServer-main\start.bat')
+        lawinserver = ""
+        with open ('lawin.txt', 'r') as lawin:
+            for line in lawin:
+                lawinserver+=line
+        os.chdir(lawinserver)
+        p = subprocess.Popen(f"{lawinserver}\start.bat")
         print("Opening Fiddler")
-        p = subprocess.Popen(r'C:\Users\nicol\AppData\Local\Programs\Fiddler\Fiddler.exe')
+        os.chdir(r'C:\Users\nicol\Desktop\python\fortnite-launcher')
+        fiddlerexe = ""
+        with open ('fiddler.txt', 'r') as fiddler:
+            for line in fiddler:
+                fiddlerexe+=line
+        p = subprocess.Popen(fiddlerexe)
         os.chdir(build)
         p = subprocess.Popen(location, creationflags=subprocess.CREATE_NEW_CONSOLE)
         print("Launching Fortnite")
         time.sleep(48)
+        os.chdir(r'C:\Users\nicol\Desktop\python\fortnite-launcher')
         injected = False
         while injected == False:
             process_name = "Fortnite"
             pid = None
-            for proc in psutil.process_iter():
-                if process_name in proc.name():
-                    pid = proc.pid
+            while pid == None:
+                for proc in psutil.process_iter():
+                    if process_name in proc.name():
+                        pid = proc.pid
+                time.sleep(5)
             if pid != None:
-                inject(pid, r'C:\Users\nicol\Desktop\UniversalFNConsole.dll')
+                consoledll = ""
+                with open ('console.txt', 'r') as console:
+                    for line in console:
+                        consoledll+=line
+                print(pid, consoledll)
+                inject(pid, consoledll)
                 injected = True
                 print("Injected Console DLL")
     # remove builds
@@ -66,12 +83,23 @@ def start():
         start()
     # set console dll path
     elif launch == "4":
+        with open('console.txt', 'r+') as txt:
+            console = input("Console DLL Path: ")
+            txt.write(console)
         start()
     # set fiddler.exe path
     elif launch == "5":
+        with open('fiddler.txt', 'r+') as txt:
+            fiddler = input("Fiddler Path: ")
+            txt.write(fiddler)
+        start()
+    elif launch == "6":
+        with open('lawin.txt', 'r+') as txt:
+            lawin = input("LawinServer Path: ")
+            txt.write(lawin)
         start()
     # quit
-    elif launch == "6":
+    elif launch == "7":
         sys.exit
     else:
         print("Invalid Choice")
