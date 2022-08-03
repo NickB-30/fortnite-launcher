@@ -9,10 +9,10 @@ def start():
     launch = input("[1] - launch\n[2] - add fortnite build\n[3] - remove fortnite build\n[4] - set console dll path\n[5] - set fiddler path\n[6] - set lawin path\n[7] - quit\n")
     # add builds
     if launch == "2":
-        txt = open("location.txt", "a")
-        loc = input("Game Location: ")
-        txt.write(f"\n{loc}")
-        print("Added Directory")
+        with open("location.txt", "a") as txt:
+            loc = input("Game Location: ")
+            txt.write(f"\n{loc}")
+            print("Added Fortnite Build")
         start()
     # launch game
     elif launch == "1":

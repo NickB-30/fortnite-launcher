@@ -1,2 +1,3 @@
-C:\Users\nicol\Desktop\fortnite-builds\Fortnite 5.41\Fortnite 5.41\FortniteGame\Binaries\Win64
 C:\Users\nicol\Desktop\fortnite-builds\7.40\FortniteGame\Binaries\Win64
+C:\Users\nicol\Desktop\fortnite-builds\3.5\Fortnite3.5\Fortnite\FortniteGame\Binaries\Win64
+C:\Users\nicol\Desktop\fortnite-builds\5.41\Fortnite 5.41\FortniteGame\Binaries\Win64
