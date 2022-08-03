@@ -1,4 +1,4 @@
-# Fortnite Launcher for 7.40
+# Python Fortnite Launcher for 7.40 
 - Opens Lawin and Fiddler
 - Auto injects console dll
 # To-Do
