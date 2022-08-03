@@ -39,9 +39,10 @@ def start():
             for proc in psutil.process_iter():
                 if process_name in proc.name():
                     pid = proc.pid
-            inject(pid, r'C:\Users\nicol\Desktop\UniversalFNConsole.dll')
-            injected = True
-            print("Injected Console DLL")
+            if pid != None:
+                inject(pid, r'C:\Users\nicol\Desktop\UniversalFNConsole.dll')
+                injected = True
+                print("Injected Console DLL")
     else:
         print("Invalid Choice")
         start()        
