@@ -6,7 +6,7 @@ import psutil
 import time
 
 def start():
-    launch = input("[1] - launch\n[2] - add fortnite build\n[3] - remove fortnite build\n[4] - set console dll path\n[5] - set fiddler path\n[6] - set lawin path\n[7] - quit\n")
+    launch = input("[1] - launch\n[2] - add fortnite build\n[3] - remove fortnite build\n[4] - set fiddler path\n[5] - set lawin path\n[6] - quit\n")
     # add builds
     if launch == "2":
         with open("location.txt", "a") as txt:
@@ -24,7 +24,8 @@ def start():
                 i+=1
                 locations.append(line)   
         number = int(input("Launch: "))
-        build = locations[number-1]
+        build = str(locations[number-1])
+        build = build[:-1]
         location = build+"\Launcher.bat"
         print(locations[number-1])
         print("Opening LawinServer")
@@ -41,10 +42,11 @@ def start():
             for line in fiddler:
                 fiddlerexe+=line
         p = subprocess.Popen(fiddlerexe)
-        os.chdir(build)
+        print(build)
+        os.chdir(build[:])
         p = subprocess.Popen(location, creationflags=subprocess.CREATE_NEW_CONSOLE)
         print("Launching Fortnite")
-        time.sleep(48)
+        time.sleep(37)
         os.chdir(r'C:\Users\nicol\Desktop\python\fortnite-launcher')
         injected = False
         while injected == False:
@@ -55,15 +57,12 @@ def start():
                     if process_name in proc.name():
                         pid = proc.pid
                 time.sleep(5)
-            if pid != None:
-                consoledll = ""
-                with open ('console.txt', 'r') as console:
-                    for line in console:
-                        consoledll+=line
-                print(pid, consoledll)
-                inject(pid, consoledll)
-                injected = True
-                print("Injected Console DLL")
+                if pid != None:
+                    consoledll = "UniversalFNConsole.dll"
+                    print(pid, consoledll)
+                    inject(pid, consoledll)
+                    injected = True
+                    print("Injected Console DLL")
     # remove builds
     elif launch == "3":
         with open("location.txt", "r") as txt:
@@ -81,25 +80,19 @@ def start():
                         remove.write(line)
                     x+=1
         start()
-    # set console dll path
-    elif launch == "4":
-        with open('console.txt', 'r+') as txt:
-            console = input("Console DLL Path: ")
-            txt.write(console)
-        start()
     # set fiddler.exe path
-    elif launch == "5":
+    elif launch == "4":
         with open('fiddler.txt', 'r+') as txt:
             fiddler = input("Fiddler Path: ")
             txt.write(fiddler)
         start()
-    elif launch == "6":
+    elif launch == "5":
         with open('lawin.txt', 'r+') as txt:
             lawin = input("LawinServer Path: ")
             txt.write(lawin)
         start()
     # quit
-    elif launch == "7":
+    elif launch == "6":
         sys.exit
     else:
         print("Invalid Choice")
