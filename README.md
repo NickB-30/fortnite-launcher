@@ -4,6 +4,7 @@
 
 - Auto injects console dll
 # Patch Notes
+
 - Set Fortnite, LawinServer, and Fiddler Directories
 
   - Make sure they are on the same drive
