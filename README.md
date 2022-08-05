@@ -4,8 +4,10 @@
 
 - Auto injects console dll
 # Patch Notes
-- Set Fortnite, Console DLL, LawinServer, and Fiddler Directories
+- Set Fortnite, LawinServer, and Fiddler Directories
 
   - Make sure they are on the same drive
+  
+ - Added Console DLL to Repo
   
 - Supports Versions 2.5 - 15.50
