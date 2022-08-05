@@ -24,9 +24,9 @@ def start():
                 i+=1
                 locations.append(line)   
         number = int(input("Launch: "))
-        build = str(locations[number-1])
-        build = build[:-1]
-        location = build+"\Launcher.bat"
+        build = (locations[number-1])
+        #build = build[:-1]
+        print(build)
         print(locations[number-1])
         print("Opening LawinServer")
         lawinserver = ""
@@ -43,7 +43,13 @@ def start():
                 fiddlerexe+=line
         p = subprocess.Popen(fiddlerexe)
         print(build)
-        os.chdir(build[:])
+        try:
+            os.chdir(build)
+            location = build+"\Launcher.bat"
+        except:
+            build = build[:-1]
+            os.chdir(build)
+            location = build+"\Launcher.bat"
         p = subprocess.Popen(location, creationflags=subprocess.CREATE_NEW_CONSOLE)
         print("Launching Fortnite")
         time.sleep(37)
