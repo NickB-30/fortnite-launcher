@@ -6,6 +6,7 @@ import psutil
 import time
 
 def start():
+    launcherdir = os.getcwd()
     launch = input("[1] - launch\n[2] - add fortnite build\n[3] - remove fortnite build\n[4] - set fiddler path\n[5] - set lawin path\n[6] - quit\n")
     # add builds
     if launch == "2":
@@ -36,7 +37,7 @@ def start():
         os.chdir(lawinserver)
         p = subprocess.Popen(f"{lawinserver}\start.bat")
         print("Opening Fiddler")
-        os.chdir(r'C:\Users\nicol\Desktop\python\fortnite-launcher')
+        os.chdir(launcherdir)
         fiddlerexe = ""
         with open ('fiddler.txt', 'r') as fiddler:
             for line in fiddler:
@@ -53,7 +54,7 @@ def start():
         p = subprocess.Popen(location, creationflags=subprocess.CREATE_NEW_CONSOLE)
         print("Launching Fortnite")
         time.sleep(37)
-        os.chdir(r'C:\Users\nicol\Desktop\python\fortnite-launcher')
+        os.chdir(launcherdir)
         injected = False
         while injected == False:
             process_name = "Fortnite"
