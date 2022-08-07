@@ -53,7 +53,7 @@ def start():
             location = build+"\Launcher.bat"
         p = subprocess.Popen(location, creationflags=subprocess.CREATE_NEW_CONSOLE)
         print("Launching Fortnite")
-        time.sleep(37)
+        time.sleep(43)
         os.chdir(launcherdir)
         injected = False
         while injected == False:
