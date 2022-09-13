@@ -27,8 +27,8 @@ def start():
         number = int(input("Launch: "))
         build = (locations[number-1])
         #build = build[:-1]
-        print(build)
-        print(locations[number-1])
+        #print(build)
+        #print(locations[number-1])
         print("Opening LawinServer")
         lawinserver = ""
         with open ('lawin.txt', 'r') as lawin:
@@ -43,7 +43,7 @@ def start():
             for line in fiddler:
                 fiddlerexe+=line
         p = subprocess.Popen(fiddlerexe)
-        print(build)
+        #print(build)
         try:
             os.chdir(build)
             location = build+"\Launcher.bat"
@@ -53,23 +53,21 @@ def start():
             location = build+"\Launcher.bat"
         p = subprocess.Popen(location, creationflags=subprocess.CREATE_NEW_CONSOLE)
         print("Launching Fortnite")
-        time.sleep(43)
+        time.sleep(37)
         os.chdir(launcherdir)
-        injected = False
-        while injected == False:
-            process_name = "Fortnite"
-            pid = None
-            while pid == None:
-                for proc in psutil.process_iter():
-                    if process_name in proc.name():
-                        pid = proc.pid
-                time.sleep(5)
-                if pid != None:
-                    consoledll = "UniversalFNConsole.dll"
-                    print(pid, consoledll)
-                    inject(pid, consoledll)
-                    injected = True
-                    print("Injected Console DLL")
+        process_name = "Fortnite"
+        print("getting pid")
+        pid = None
+        while pid == None:
+            for proc in psutil.process_iter():
+                if process_name in proc.name():
+                    pid = proc.pid
+        print(pid)
+        if pid != None:
+            consoledll = "UniversalFNConsole.dll"
+            print(pid, consoledll)
+            inject(pid, consoledll)
+            print("Injected Console DLL")
     # remove builds
     elif launch == "3":
         with open("location.txt", "r") as txt:
